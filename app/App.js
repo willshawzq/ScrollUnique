@@ -19,13 +19,11 @@ const ScrollUnique = createClass({
             scrollHeight = oContainer.scrollHeight,
             height = oContainer.clientHeight;
 
-        let delta = deltaMode ? deltaY / 3 : deltaY / 100;
-
-        if((delta < 0 && scrollTop <= delta) ||
-           (delta > 0 && scrollHeight - height - scrollTop <= delta)) {
-               oContainer.scrollTop = delta < 0 ? 0 : scrollHeight;
-               ev.preventDefault();
-           }
+        if((deltaY < 0 && scrollTop <= -deltaY) ||
+           (deltaY > 0 && scrollHeight - height - scrollTop <= deltaY)) {
+           oContainer.scrollTop = deltaY < 0 ? 0 : scrollHeight;
+           ev.preventDefault();
+       }
     },
     getStringProp(value) {
       if(typeof value === 'number') {
